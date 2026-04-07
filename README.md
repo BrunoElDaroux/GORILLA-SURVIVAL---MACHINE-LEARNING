@@ -1,5 +1,9 @@
 # 🦍 Machine Learning for Survival Prediction in Mountain Gorilla Populations
 
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Project Overview
 A full end-to-end machine learning pipeline predicting **individual survival outcomes** in mountain gorilla (*Gorilla beringei beringei*) populations using behavioral, social, and environmental variables collected longitudinally across gorilla groups.
 
