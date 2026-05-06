@@ -105,7 +105,7 @@ Parameters are grounded in published literature:
 ## ⚠️ Dataset Source Note
 > Since no fully open-access individual-level gorilla longitudinal survival CSV exists publicly, this project uses a **synthetic dataset generated with `generate_dataset.py`** using ecological parameters from peer-reviewed literature. The structure mirrors real datasets used by the Dian Fossey Gorilla Fund and similar field stations.
 >
-> For real gorilla data, apply at: https://gorillafund.org/science/
+> For real gorilla data, apply at: [https://gorillafund.org/science/](https://gorillafund.org/what-we-do/scientific-research/)
 
 ---
 
