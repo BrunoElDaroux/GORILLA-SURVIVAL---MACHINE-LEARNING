@@ -109,7 +109,7 @@ Parameters are grounded in published literature:
 
 ---
 
-## Key Results (Expected)
+## Key Results
 - **Top predictor**: Group size (larger groups → higher survival)
 - **Environmental**: Annual rainfall → food availability → survival (indirect path)
 - **Demographic**: Age class and sex modulate baseline survival
