@@ -19,12 +19,22 @@ A full end-to-end machine learning pipeline predicting **individual survival out
 
 ## Key Findings Summary
 
-1. `Group structure:` Group size was the strongest predictor of individual survival. Larger groups confer a dilution effect and cooperative defence advantage — consistent with Harcourt & Fossey (1981) and broader social mammal theory.
-2. `Environment:` Lagged annual rainfall (prior year) positively predicted survival, operating indirectly through food availability. El Niño years (2015–2016) showed elevated mortality, especially in smaller groups.
-3. `Demographics:` Infants and seniors faced the highest mortality risk. Males had slightly lower survival than females, driven by injury and dominance contest costs.
-Group composition: Multi-male groups showed marginally better survival, likely reflecting enhanced vigilance and predator deterrence.
-4. `Model performance:` The Random Forest achieved strong ROC-AUC under temporal cross-validation, though the severe class imbalance (~98% survival) means raw accuracy is misleading — balanced metrics matter here.
-5. `Conservation output:` Small, isolated groups with declining group size trajectories were flagged as highest priority for intervention.
+1. `Age is the dominant predictor — not group size.`
+Permutation feature importance places age at the top of the model (importance = 0.096 ± 0.013), nearly twice the signal of its ordinal encoding (0.049 ± 0.012). Together, these two age-related features account for the strongest survival signal in the data, consistent with established mountain gorilla mortality curves: infants (mean predicted survival probability = 0.82, range 0.46–0.97) and seniors (range 0.82–1.0) are the highest-risk classes. Of the 18 observed deaths in the test window (2021–2023), 12 (67%) were infants and 6 (33%) were seniors — zero prime adults died.
+
+2. `Group composition matters, but group size ranks 4th.`
+Proportion of infants in the group (0.012 ± 0.003) and raw group size (0.011 ± 0.005) ranked 3rd and 4th respectively, close together and well below age. This refines the original narrative: it is not simply "larger groups → higher survival" — rather, it is the age structure and silverback ratio (0.005 ± 0.002) of the group that modulate risk alongside size, consistent with dilution-effect theory (Harcourt & Fossey, 1981) operating through compositional pathways.
+
+3. `Rainfall signal is weaker than expected.`
+Annual rainfall shows low positive importance (0.002 ± 0.001), but lagged rainfall (prior-year mm) yields negative permutation importance (−0.001), suggesting it adds noise rather than robust signal in this dataset. The expected indirect pathway — rainfall → food availability → survival — was not recovered cleanly by the Random Forest, though elevated infant mortality during the anomalously wet 2015–2016 El Niño years (annual rainfall: 1,342 mm and 1,384 mm vs. 970–1,163 mm baseline) is visible in the raw data.
+
+4. `Sex is not a meaningful predictor.`
+`sex_binary` has negative permutation importance (−0.001 ± 0.003) — below-chance performance when permuted — indicating that while males may face higher real-world injury risk from dominance contests, the Random Forest finds no clean sex-based survival signal in this dataset. foraging_efficiency similarly underperforms at −0.006 ± 0.003, the most negative feature in the model.
+
+5. `Class imbalance is the central modelling challenge.` With survival rates near 98%, the model predicts survival = 1 for virtually every individual — yielding deceptively high raw accuracy while missing most actual deaths (18 observed deaths are all predicted as surviving except one). Permutation importance scores must therefore be interpreted cautiously: near-zero or slightly negative values do not necessarily mean a feature is ecologically irrelevant — they reflect signal diluted by an overwhelmingly one-sided target. Balanced metrics (ROC-AUC, balanced accuracy) are the appropriate evaluation lens here.
+
+6. `Conservation output: Ugenda is the highest-priority group.` Ugenda recorded the most deaths in the test set (4 events: 2 senior deaths in 2023, 2 infant deaths across 2021–2023) — more than any other group. Bwenge and Hirwa each recorded 2 deaths. Groups with high infant proportions, smaller sizes, and declining senior cohorts were flagged as priority candidates for intervention.
+Also, Small, and isolated groups with declining group size trajectories were flagged as highest priority for intervention.
 
 ---
 
